@@ -15,7 +15,7 @@ package com.qa.persistence.dao;
 
 	public class ItemDaoMysql implements Dao<Item> {
 		
-		public static final Logger logger = Logger.getLogger(ItemController.class);
+		public static final Logger logger = Logger.getLogger(ItemDaoMysql.class);
 		
 		public List<Item> readAll() {
 			ArrayList<Item> items = new ArrayList<Item>();
@@ -30,7 +30,6 @@ package com.qa.persistence.dao;
 					items.add(item);
 				}
 			} catch (Exception e) {
-				
 			}
 			return items;
 		}
