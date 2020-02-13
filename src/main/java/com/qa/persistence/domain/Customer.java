@@ -45,4 +45,9 @@ public class Customer{
 		return "id:" + id + " name:" + name + " role:" + role;
 	}
 
+	public void setId(Object object) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
