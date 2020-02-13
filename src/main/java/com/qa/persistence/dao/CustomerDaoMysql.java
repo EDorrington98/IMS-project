@@ -14,14 +14,15 @@ import com.qa.persistence.domain.Customer;
 import com.qa.utils.Config;
 
 public class CustomerDaoMysql implements Dao<Customer> {
-	
+
 	public static final Logger logger = Logger.getLogger(CustomerController.class);
-	
+
 	public List<Customer> readAll() {
 		ArrayList<Customer> customers = new ArrayList<>();
-		try (Connection connection = DriverManager.getConnection("jdbc:mysql://35.234.153.182:3306/project_db", Config.username, Config.password)) {
-			Statement statement = connection.createStatement();
-			ResultSet resultSet = statement.executeQuery("select * from customers");
+		try (Connection connection = DriverManager.getConnection("jdbc:mysql://35.234.153.182:3306/project_db",
+				Config.username, Config.password);
+				Statement statement = connection.createStatement();
+				ResultSet resultSet = statement.executeQuery("select * from customers");) {
 			while (resultSet.next()) {
 				int id = resultSet.getInt("id");
 				String name = resultSet.getString("name");
@@ -31,41 +32,41 @@ public class CustomerDaoMysql implements Dao<Customer> {
 			}
 		} catch (Exception e) {
 			logger.error(e.getMessage());
-			
+
 		}
 		return customers;
 	}
 
 	public void create(Customer customer) {
-		try (Connection connection = DriverManager.getConnection("jdbc:mysql://35.234.153.182:3306/project_db", Config.username, Config.password)){
-			Statement statement = connection.createStatement();
-			statement.executeUpdate("INSERT into customers(name, role) values('" + customer.getName() + "','" + customer.getRole()+"')");
+		try (Connection connection = DriverManager.getConnection("jdbc:mysql://35.234.153.182:3306/project_db",
+				Config.username, Config.password); Statement statement = connection.createStatement();) {
+			statement.executeUpdate("INSERT into customers(name, role) values('" + customer.getName() + "','"
+					+ customer.getRole() + "')");
 		} catch (Exception e) {
 			logger.error(e.getMessage());
-			
-		} 
+
+		}
 	}
 
 	public void update(int id, Customer customer) {
-		try (Connection connection = DriverManager.getConnection("jdbc:mysql://35.234.153.182:3306/project_db", Config.username, Config.password)){
-			Statement statement = connection.createStatement();
-			statement.executeUpdate("UPDATE customers SET name ='" + customer.getName() + "' , role = '" + customer.getRole() + "' WHERE id =" + id);
+		try (Connection connection = DriverManager.getConnection("jdbc:mysql://35.234.153.182:3306/project_db",
+				Config.username, Config.password); Statement statement = connection.createStatement();) {
+
+			statement.executeUpdate("UPDATE customers SET name ='" + customer.getName() + "' , role = '"
+					+ customer.getRole() + "' WHERE id =" + id);
 		} catch (Exception e) {
 			logger.error(e.getMessage());
 		}
 	}
 
 	public void delete(int id) {
-		try (Connection connection = DriverManager.getConnection("jdbc:mysql://35.234.153.182:3306/project_db", Config.username, Config.password)){
-			Statement statement = connection.createStatement();
+		try (Connection connection = DriverManager.getConnection("jdbc:mysql://35.234.153.182:3306/project_db",
+				Config.username, Config.password); Statement statement = connection.createStatement();) {
+
 			statement.executeUpdate("DELETE from customers WHERE id =" + id);
 		} catch (Exception e) {
 			logger.error(e.getMessage());
 		}
 	}
-
-
-
-
 
 }
