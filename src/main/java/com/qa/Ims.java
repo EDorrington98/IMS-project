@@ -6,17 +6,20 @@ import com.qa.controller.Action;
 import com.qa.controller.CrudController;
 import com.qa.controller.CustomerController;
 import com.qa.controller.ItemController;
+import com.qa.controller.OrderController;
 import com.qa.persistence.dao.CustomerDaoMysql;
 import com.qa.persistence.dao.ItemDaoMysql;
+import com.qa.persistence.dao.OrderDaoMysql;
 import com.qa.persistence.domain.Domain;
 import com.qa.services.CustomerServices;
 import com.qa.services.ItemServices;
+import com.qa.services.OrderServices;
 import com.qa.utils.Config;
 import com.qa.utils.Utils;
 
 public class Ims {
 	
-	public static final Logger LOGGER = Logger.getLogger(Ims.class);
+	public final Logger LOGGER = Logger.getLogger(Ims.class);
 
 	public void imsSystem() {
 		LOGGER.info("What is your username");
@@ -37,11 +40,14 @@ public class Ims {
 		case CUSTOMER:
 			CustomerController customerController = new CustomerController(new CustomerServices(new CustomerDaoMysql()));
 			doAction(customerController, action);
+			break;
 		case ITEM:
 			ItemController itemController = new ItemController(new ItemServices(new ItemDaoMysql()));
 			doAction(itemController, action);
 			break;
 		case ORDER:
+			OrderController orderController = new OrderController(new OrderServices(new OrderDaoMysql()));
+			doAction(orderController, action);
 			break;
 		case STOP:
 			break;
