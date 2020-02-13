@@ -18,7 +18,7 @@ public class CustomerDaoMysql implements Dao<Customer> {
 	public static final Logger logger = Logger.getLogger(CustomerController.class);
 	
 	public List<Customer> readAll() {
-		ArrayList<Customer> customers = new ArrayList<Customer>();
+		ArrayList<Customer> customers = new ArrayList<>();
 		try (Connection connection = DriverManager.getConnection("jdbc:mysql://35.234.153.182:3306/project_db", Config.username, Config.password)) {
 			Statement statement = connection.createStatement();
 			ResultSet resultSet = statement.executeQuery("select * from customers");
