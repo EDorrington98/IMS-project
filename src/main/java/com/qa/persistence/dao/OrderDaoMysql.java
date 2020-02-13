@@ -50,7 +50,7 @@ public class OrderDaoMysql implements Dao<Order> {
 			Statement statement = connection.createStatement();
 			statement.executeUpdate("UPDATE orders SET name ='" + order.getCustomerId() + "' , value = '" + order.getCost() + "' WHERE id =" + id);
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error(e.getMessage());
 		}
 	}
 
@@ -59,7 +59,7 @@ public class OrderDaoMysql implements Dao<Order> {
 			Statement statement = connection.createStatement();
 			statement.executeUpdate("DELETE from orders WHERE id =" + id);
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error(e.getMessage());
 		}
 	}
 

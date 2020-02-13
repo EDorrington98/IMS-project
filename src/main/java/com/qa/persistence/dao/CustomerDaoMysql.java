@@ -30,6 +30,7 @@ public class CustomerDaoMysql implements Dao<Customer> {
 				customers.add(customer);
 			}
 		} catch (Exception e) {
+			logger.error(e.getMessage());
 			
 		}
 		return customers;
@@ -40,6 +41,7 @@ public class CustomerDaoMysql implements Dao<Customer> {
 			Statement statement = connection.createStatement();
 			statement.executeUpdate("INSERT into customers(name, role) values('" + customer.getName() + "','" + customer.getRole()+"')");
 		} catch (Exception e) {
+			logger.error(e.getMessage());
 			
 		} 
 	}
@@ -49,7 +51,7 @@ public class CustomerDaoMysql implements Dao<Customer> {
 			Statement statement = connection.createStatement();
 			statement.executeUpdate("UPDATE customers SET name ='" + customer.getName() + "' , role = '" + customer.getRole() + "' WHERE id =" + id);
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error(e.getMessage());
 		}
 	}
 
@@ -58,7 +60,7 @@ public class CustomerDaoMysql implements Dao<Customer> {
 			Statement statement = connection.createStatement();
 			statement.executeUpdate("DELETE from customers WHERE id =" + id);
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error(e.getMessage());
 		}
 	}
 
