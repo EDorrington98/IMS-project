@@ -30,6 +30,7 @@ package com.qa.persistence.dao;
 					items.add(item);
 				}
 			} catch (Exception e) {
+				logger.error(e.getMessage());
 			}
 			return items;
 		}
@@ -39,6 +40,7 @@ package com.qa.persistence.dao;
 				Statement statement = connection.createStatement();
 				statement.executeUpdate("INSERT into items(name, value) values('" + item.getName() + "','" + item.getValue()+"')");
 			} catch (Exception e) {
+				logger.error(e.getMessage());
 				
 			} 
 		}
@@ -48,7 +50,7 @@ package com.qa.persistence.dao;
 				Statement statement = connection.createStatement();
 				statement.executeUpdate("UPDATE items SET name ='" + item.getName() + "' , value = '" + item.getValue() + "' WHERE id =" + id);
 			} catch (Exception e) {
-				e.printStackTrace();
+				logger.error(e.getMessage());
 			}
 		}
 
@@ -57,7 +59,7 @@ package com.qa.persistence.dao;
 				Statement statement = connection.createStatement();
 				statement.executeUpdate("DELETE from items WHERE id =" + id);
 			} catch (Exception e) {
-				e.printStackTrace();
+				logger.error(e.getMessage());
 			}
 		}
 
