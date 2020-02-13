@@ -50,5 +50,10 @@ public class CustomerController implements CrudController<Customer>{
 		LOGGER.info("Customer deleted");
 		
 	}
+
+	public void getInput() {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }

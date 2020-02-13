@@ -33,9 +33,6 @@ package com.qa.controller;
 
 		public void update() {
 			LOGGER.info("Please enter an item's name to update");
-			System.out.println("Hi Elliot it's your boi breaking all of your code lol");
-			System.out.println("Please don't delete these lines it would be really funny");
-			System.out.print(" if Chris found these messages");
 			String name = Utils.getInput();
 			LOGGER.info("Please enter an item value to update");
 			int value = Utils.getInt();
